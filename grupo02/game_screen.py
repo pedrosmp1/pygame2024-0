@@ -25,8 +25,10 @@ def game_screen(window):
     tela = 'azul'
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
 
-    n=sorteia_numeros(2)
-    num_digitado=''
+    x=1
+    n=sorteia_numeros(x)
+    vidas=3
+    acertos=0
     # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
@@ -50,8 +52,17 @@ def game_screen(window):
             tempo_da_ultima_mudanca = agora
             if tela == 'azul':
                 tela = 'vermelha'
+                num_digitado=''
             else:
+                if n==num_digitado:
+                    acertos+=1
+                else:
+                    vidas-=1
+                    if vidas==0:
+                        state=DONE
                 tela = 'azul'
+                x+=1
+                n=sorteia_numeros(x)
         
         window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
         if tela == 'azul':
@@ -65,10 +76,10 @@ def game_screen(window):
             window.blit(digite,(450-(digite.get_rect().width)/2,150))
             n_d=dicionario_de_arquivos['font_media'].render(num_digitado, True, (0,0,0))
             window.blit(n_d,(450-(n_d.get_rect().width)/2,350))
+            
 
             
         
         pygame.display.update()  # Mostra o novo frame para o jogador
 
     return state
-print(sorteia_numeros(2))
