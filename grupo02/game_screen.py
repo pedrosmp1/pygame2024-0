@@ -26,15 +26,20 @@ def game_screen(window):
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
 
     n=sorteia_numeros(2)
+    num_digitado=''
     # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
 
         # ----- Trata eventos
         for event in pygame.event.get():
+            
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
+            if event.type==pygame.KEYDOWN:
+                num_digitado+=event.unicode
+
 
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor branca
@@ -58,6 +63,9 @@ def game_screen(window):
         else:
             digite=dicionario_de_arquivos['font_media'].render('Digite...', True, (255,255,255))
             window.blit(digite,(450-(digite.get_rect().width)/2,150))
+            n_d=dicionario_de_arquivos['font_media'].render(num_digitado, True, (0,0,0))
+            window.blit(n_d,(450-(n_d.get_rect().width)/2,350))
+
             
         
         pygame.display.update()  # Mostra o novo frame para o jogador
