@@ -39,10 +39,10 @@ def game_screen(window):
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
-            if event.type==pygame.KEYDOWN and tela!='azul' and len(num_digitado)<x:
-                if event.key == pygame.K_BACKSPACE:
+            if event.type==pygame.KEYDOWN and tela!='azul' and len(num_digitado)<=x:
+                if event.key == pygame.K_BACKSPACE and len(num_digitado)<=x :
                     num_digitado = num_digitado[:-1]
-                elif event.unicode in numbers:
+                elif event.unicode in numbers and len(num_digitado)<x:
                     num_digitado+=event.unicode
 
             
@@ -66,13 +66,16 @@ def game_screen(window):
                     vidas-=1
                     dicionario_de_arquivos['snd_derrota'].play()
                     if vidas==0:
+                        return 'fim',acertos
+                        
                         state=DONE
                 tela = 'azul'
                 x+=1
                 n=sorteia_numeros(x)
         
-        window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
+        
         if tela == 'azul':
+            window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
             memorize=dicionario_de_arquivos['font_media'].render('Memorize...', True, (255,255,255))
             numero=dicionario_de_arquivos['font_media'].render(n, True, (255,255,255))
             window.blit(memorize,(450-(memorize.get_rect().width)/2,150))
@@ -82,6 +85,7 @@ def game_screen(window):
 
             
         else:
+            window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
             digite=dicionario_de_arquivos['font_media'].render('Digite...', True, (255,255,255))
             window.blit(digite,(450-(digite.get_rect().width)/2,150))
             n_d=dicionario_de_arquivos['font_media'].render(num_digitado, True, (0,0,0))
@@ -92,16 +96,10 @@ def game_screen(window):
         window.blit(vida,(650,50))
         acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(acertos)}', True, (255,255,255))
         window.blit(acerto,(650,80))
-    # if state==DONE:
-    #     fim = dicionario_de_arquivos['font_media'].render("Fim de Jogo!", True, (255, 255, 255))
-    #     acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(acertos)}', True, (255,255,255))
 
-    #     window.blit(fim, (400,400))
-    #     window.blit(acerto, (400,500))
-
-            
+                
         pygame.display.update()  # Mostra o novo frame para o jogador
-    return state
+    return 'a',acertos
 
 
     
