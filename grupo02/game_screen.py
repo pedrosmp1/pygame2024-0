@@ -24,7 +24,7 @@ def game_screen(window):
 
     tela = 'azul'
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
-
+    numbers=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     x=1
     n=sorteia_numeros(x)
     vidas=3
@@ -39,8 +39,13 @@ def game_screen(window):
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
-            if event.type==pygame.KEYDOWN and tela!='azul':
-                num_digitado+=event.unicode
+            if event.type==pygame.KEYDOWN and tela!='azul' and len(num_digitado)<x:
+                if event.key == pygame.K_BACKSPACE:
+                    num_digitado = num_digitado[:-1]
+                elif event.unicode in numbers:
+                    num_digitado+=event.unicode
+
+            
 
 
         # ----- Gera saídas
@@ -87,8 +92,20 @@ def game_screen(window):
         window.blit(vida,(650,50))
         acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(acertos)}', True, (255,255,255))
         window.blit(acerto,(650,80))
-            
-        
-        pygame.display.update()  # Mostra o novo frame para o jogador
+    # if state==DONE:
+    #     fim = dicionario_de_arquivos['font_media'].render("Fim de Jogo!", True, (255, 255, 255))
+    #     acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(acertos)}', True, (255,255,255))
 
+    #     window.blit(fim, (400,400))
+    #     window.blit(acerto, (400,500))
+
+            
+        pygame.display.update()  # Mostra o novo frame para o jogador
     return state
+
+
+    
+    
+        
+
+    
