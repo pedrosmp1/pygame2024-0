@@ -39,7 +39,7 @@ def game_screen(window):
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
-            if event.type==pygame.KEYDOWN:
+            if event.type==pygame.KEYDOWN and tela!='azul':
                 num_digitado+=event.unicode
 
 
@@ -56,8 +56,10 @@ def game_screen(window):
             else:
                 if n==num_digitado:
                     acertos+=1
+                    dicionario_de_arquivos['snd_vitoria'].play()
                 else:
                     vidas-=1
+                    dicionario_de_arquivos['snd_derrota'].play()
                     if vidas==0:
                         state=DONE
                 tela = 'azul'

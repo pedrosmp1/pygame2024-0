@@ -13,6 +13,8 @@ def carrega_arquivos():
     dicionario_de_arquivos['btn'] = pygame.transform.scale(dicionario_de_arquivos['btn'], (largura, altura))
 
     
+    dicionario_de_arquivos['snd_vitoria']= pygame.mixer.Sound(os.path.join(SND_DIR, 'success.wav'))
+    dicionario_de_arquivos['snd_derrota']= pygame.mixer.Sound(os.path.join(SND_DIR, 'wah-wah.wav'))
 
     dicionario_de_arquivos['input'] = pygame.image.load(os.path.join(IMG_DIR, 'input.png')).convert()
     dicionario_de_arquivos['btn_hover'] = pygame.image.load(os.path.join(IMG_DIR, 'btn1_hover.png')).convert()
