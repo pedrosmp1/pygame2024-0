@@ -1,4 +1,5 @@
 import pygame
+import random
 
 class Botao(pygame.sprite.Sprite):
     def __init__(self, assets, nome_do_jogo):
@@ -24,5 +25,9 @@ class Botao(pygame.sprite.Sprite):
             self.image = self.assets['btn_hover']
         else:
             self.image = self.assets['btn']
+
+
+    
+
 
     

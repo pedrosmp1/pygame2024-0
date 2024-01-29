@@ -1,6 +1,16 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED
 from assets import carrega_arquivos
+import random
+
+
+def sorteia_numeros(x):
+    n=''
+    for i in range(x):
+        y=random.randint(0,9)
+        n+=str(y)
+    return n
+
 
 def game_screen(window):
     # Variável para o ajuste de velocidade
@@ -15,7 +25,7 @@ def game_screen(window):
     tela = 'azul'
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
 
-
+    n=sorteia_numeros(2)
     # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
@@ -37,14 +47,18 @@ def game_screen(window):
                 tela = 'vermelha'
             else:
                 tela = 'azul'
-
-        if tela == 'azul':
-            window.fill(BLUE)
-            memorize=dicionario_de_arquivos['font_media'].render('Memorize...', True, (0,0,0))
-            window.blit(memorize,(450-(memorize.get_rect().width)/2,150))
-        else:
-            window.fill(RED)
+        
         window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
+        if tela == 'azul':
+            memorize=dicionario_de_arquivos['font_media'].render('Memorize...', True, (255,255,255))
+            numero=dicionario_de_arquivos['font_media'].render(n, True, (255,255,255))
+            window.blit(memorize,(450-(memorize.get_rect().width)/2,150))
+            window.blit(numero,(450-(numero.get_rect().width)/2,250))
+            
+        else:
+            pass
+        
         pygame.display.update()  # Mostra o novo frame para o jogador
 
     return state
+print(sorteia_numeros(2))

@@ -22,3 +22,6 @@ def carrega_arquivos():
     dicionario_de_arquivos['font'] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 22)
     dicionario_de_arquivos['font_media'] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 30)
     return dicionario_de_arquivos
+
+
+
