@@ -56,7 +56,9 @@ def game_screen(window):
             window.blit(numero,(450-(numero.get_rect().width)/2,250))
             
         else:
-            pass
+            digite=dicionario_de_arquivos['font_media'].render('Digite...', True, (255,255,255))
+            window.blit(digite,(450-(digite.get_rect().width)/2,150))
+            
         
         pygame.display.update()  # Mostra o novo frame para o jogador
 
