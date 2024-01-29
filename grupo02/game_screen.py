@@ -48,7 +48,7 @@ def game_screen(window):
         
         # Lógica para alternar as cores
         agora = pygame.time.get_ticks()
-        if agora - tempo_da_ultima_mudanca > 2000:
+        if agora - tempo_da_ultima_mudanca > 3000:
             tempo_da_ultima_mudanca = agora
             if tela == 'azul':
                 tela = 'vermelha'
@@ -71,13 +71,20 @@ def game_screen(window):
             window.blit(memorize,(450-(memorize.get_rect().width)/2,150))
             window.blit(numero,(450-(numero.get_rect().width)/2,250))
             
+
+
+            
         else:
             digite=dicionario_de_arquivos['font_media'].render('Digite...', True, (255,255,255))
             window.blit(digite,(450-(digite.get_rect().width)/2,150))
             n_d=dicionario_de_arquivos['font_media'].render(num_digitado, True, (0,0,0))
             window.blit(n_d,(450-(n_d.get_rect().width)/2,350))
             
-
+            
+        vida=dicionario_de_arquivos['font'].render(f'vidas:{str(vidas)}', True, (255,255,255))
+        window.blit(vida,(650,50))
+        acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(acertos)}', True, (255,255,255))
+        window.blit(acerto,(650,80))
             
         
         pygame.display.update()  # Mostra o novo frame para o jogador
