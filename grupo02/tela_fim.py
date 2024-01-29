@@ -29,6 +29,7 @@ def tela_fim(window,pontos):
         acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(pontos)}', True, (255,255,255))
         window.blit(fim, (200,200))
         window.blit(acerto, (200,400))
+        rank=dicionario_de_arquivos['font_media'].render("Fim de Jogo!", True, (255, 255, 255))
 
         
         # ----- Gera saídas
@@ -36,7 +37,8 @@ def tela_fim(window,pontos):
         
         # Lógica para alternar as cores
        
-
+        with open('ranking.txt', "a") as arquivo:
+            arquivo.write(f"{pontos}\n")
                 
         pygame.display.update()  # Mostra o novo frame para o jogador
     return state

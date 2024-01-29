@@ -2,7 +2,7 @@ import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED
 from assets import carrega_arquivos
 import random
-
+info={}
 
 def sorteia_numeros(x):
     n=''
@@ -96,9 +96,11 @@ def game_screen(window):
         window.blit(vida,(650,50))
         acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(acertos)}', True, (255,255,255))
         window.blit(acerto,(650,80))
+    
 
                 
         pygame.display.update()  # Mostra o novo frame para o jogador
+
     return 'a',acertos
 
 

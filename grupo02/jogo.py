@@ -8,6 +8,7 @@ from game_screen import game_screen
 from tela_fim import tela_fim
 
 
+
 pygame.init()
 pygame.mixer.init()
 
