@@ -23,7 +23,7 @@ def game_screen(window):
     PLAYING = 1
     state = PLAYING
 
-    tela = 'azul'
+    tela = 'jogando'
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
     numbers=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     x=1
@@ -41,7 +41,7 @@ def game_screen(window):
             
             if event.type == pygame.QUIT:
                 state = DONE
-            if event.type==pygame.KEYDOWN and tela!='azul' and len(num_digitado)<=x:
+            if event.type==pygame.KEYDOWN and tela!='jogando' and len(num_digitado)<=x:
                 if event.key == pygame.K_BACKSPACE and len(num_digitado)<=x :
                     num_digitado = num_digitado[:-1]
                 elif event.unicode in numbers and len(num_digitado)<x:
@@ -56,8 +56,8 @@ def game_screen(window):
         agora = pygame.time.get_ticks()
         if agora - tempo_da_ultima_mudanca > 3000:
             tempo_da_ultima_mudanca = agora
-            if tela == 'azul':
-                tela = 'vermelha'
+            if tela == 'jogando':
+                tela = 'nn jogando'
                 num_digitado=''
             else:
                 if n==num_digitado:
@@ -78,13 +78,12 @@ def game_screen(window):
                         return 'fim',acertos,pontuacoes
                         
                         state=DONE
-                tela = 'azul'
+                tela = 'jogando'
                 x+=1
                 n=sorteia_numeros(x)
         
         
-        if tela == 'azul':
-            #window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
+        if tela == 'jogando':
             window.blit(clas_input.img,(clas_input.x,clas_input.y))
             memorize=dicionario_de_arquivos['font_media'].render('Memorize...', True, (255,255,255))
             numero=dicionario_de_arquivos['font_media'].render(n, True, (255,255,255))
