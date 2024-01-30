@@ -5,23 +5,14 @@ import random
 
 
 def tela_fim(window,pontos,rank):
-    # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
-
     dicionario_de_arquivos = carrega_arquivos()
-
     DONE = 0
     PLAYING = 1
     state = PLAYING
-
-    # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
-
-        # ----- Trata eventos
         for event in pygame.event.get():
-            
-            # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
         window.fill(RED)
@@ -34,16 +25,7 @@ def tela_fim(window,pontos,rank):
         for i in range(len(rank[:10])):
             ranking_pontos=dicionario_de_arquivos['font'].render(f"{rank[i]}", True, (255, 255, 255))
             window.blit(ranking_pontos,(300,200+i*50))
-
-
-        
-        # ----- Gera saídas
-          # Preenche com a cor branca
-        
-            
-            
-                
-        pygame.display.update()  # Mostra o novo frame para o jogador
+        pygame.display.update()  
     return state
 
 

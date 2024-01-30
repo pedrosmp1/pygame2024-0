@@ -13,7 +13,7 @@ def sorteia_numeros(x):
 
 
 def game_screen(window):
-    # Variável para o ajuste de velocidade
+
     clock = pygame.time.Clock()
 
     dicionario_de_arquivos = carrega_arquivos()
@@ -29,14 +29,13 @@ def game_screen(window):
     n=sorteia_numeros(x)
     vidas=3
     acertos=0
-    # ===== Loop principal =====
+    
     while state != DONE:
         clock.tick(FPS)
 
-        # ----- Trata eventos
+     
         for event in pygame.event.get():
             
-            # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
             if event.type==pygame.KEYDOWN and tela!='azul' and len(num_digitado)<=x:
@@ -48,10 +47,9 @@ def game_screen(window):
             
 
 
-        # ----- Gera saídas
-        window.fill(BLACK)  # Preenche com a cor branca
-        
-        # Lógica para alternar as cores
+     
+        window.fill(BLACK)  
+   
         agora = pygame.time.get_ticks()
         if agora - tempo_da_ultima_mudanca > 3000:
             tempo_da_ultima_mudanca = agora
@@ -74,7 +72,6 @@ def game_screen(window):
                                 pontuacao = int(linha.strip())
                                 pontuacoes.append(pontuacao)
                         pontuacoes.sort(reverse=True)
-                        print(pontuacoes)
                         return 'fim',acertos,pontuacoes
                         
                         state=DONE
@@ -108,7 +105,7 @@ def game_screen(window):
     
 
                 
-        pygame.display.update()  # Mostra o novo frame para o jogador
+        pygame.display.update()  
 
     return 'a',acertos
 
