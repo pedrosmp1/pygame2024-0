@@ -66,7 +66,16 @@ def game_screen(window):
                     vidas-=1
                     dicionario_de_arquivos['snd_derrota'].play()
                     if vidas==0:
-                        return 'fim',acertos
+                        with open('ranking.txt', "a") as arquivo:
+                            arquivo.write(f"{acertos}\n")
+                        pontuacoes=[]
+                        with open('ranking.txt', 'r') as arquivo:
+                            for linha in arquivo:
+                                pontuacao = int(linha.strip())
+                                pontuacoes.append(pontuacao)
+                        pontuacoes.sort(reverse=True)
+                        print(pontuacoes)
+                        return 'fim',acertos,pontuacoes
                         
                         state=DONE
                 tela = 'azul'

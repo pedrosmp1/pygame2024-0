@@ -21,9 +21,9 @@ while state != QUIT:
     if state == INIT:
         state = init_screen(window)
     elif state == GAME:
-        state,pontos = game_screen(window)
+        state,pontos,rank = game_screen(window)
     elif state=='fim':
-        state=tela_fim(window,pontos)
+        state=tela_fim(window,pontos,rank)
     else:
         state = QUIT
 

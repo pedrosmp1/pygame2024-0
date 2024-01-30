@@ -4,7 +4,7 @@ from assets import carrega_arquivos
 import random
 
 
-def tela_fim(window,pontos):
+def tela_fim(window,pontos,rank):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
@@ -27,18 +27,21 @@ def tela_fim(window,pontos):
         window.fill(RED)
         fim = dicionario_de_arquivos['font_media'].render("Fim de Jogo!", True, (255, 255, 255))
         acerto=dicionario_de_arquivos['font'].render(f'acertos:{str(pontos)}', True, (255,255,255))
-        window.blit(fim, (200,200))
-        window.blit(acerto, (200,400))
-        rank=dicionario_de_arquivos['font_media'].render("Fim de Jogo!", True, (255, 255, 255))
+        window.blit(fim, (100,80))
+        window.blit(acerto, (600,80))
+        ranking=dicionario_de_arquivos['font_media'].render("Ranking:", True, (255, 255, 255))
+        window.blit(ranking,(300,150))
+        for i in range(len(rank[:10])):
+            ranking_pontos=dicionario_de_arquivos['font'].render(f"{rank[i]}", True, (255, 255, 255))
+            window.blit(ranking_pontos,(300,200+i*50))
+
 
         
         # ----- Gera saídas
           # Preenche com a cor branca
         
-        # Lógica para alternar as cores
-       
-        with open('ranking.txt', "a") as arquivo:
-            arquivo.write(f"{pontos}\n")
+            
+            
                 
         pygame.display.update()  # Mostra o novo frame para o jogador
     return state
