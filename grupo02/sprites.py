@@ -26,7 +26,12 @@ class Botao(pygame.sprite.Sprite):
         else:
             self.image = self.assets['btn']
 
-
+class Input:
+    def __init__(self,x,y,img):
+        self.x=x
+        self.y=y
+        self.img=img
+    
     
 
 

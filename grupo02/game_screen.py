@@ -1,6 +1,7 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED
 from assets import carrega_arquivos
+from sprites import Input
 import random
 info={}
 
@@ -29,6 +30,8 @@ def game_screen(window):
     n=sorteia_numeros(x)
     vidas=3
     acertos=0
+    clas_input=Input(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2,dicionario_de_arquivos['input'])
+
     
     while state != DONE:
         clock.tick(FPS)
@@ -81,7 +84,8 @@ def game_screen(window):
         
         
         if tela == 'azul':
-            window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
+            #window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
+            window.blit(clas_input.img,(clas_input.x,clas_input.y))
             memorize=dicionario_de_arquivos['font_media'].render('Memorize...', True, (255,255,255))
             numero=dicionario_de_arquivos['font_media'].render(n, True, (255,255,255))
             window.blit(memorize,(450-(memorize.get_rect().width)/2,150))
@@ -91,7 +95,7 @@ def game_screen(window):
 
             
         else:
-            window.blit(dicionario_de_arquivos['input'],(450-(dicionario_de_arquivos['input'].get_rect().width)/2,350-(dicionario_de_arquivos['input'].get_rect().height)/2))
+            window.blit(clas_input.img,(clas_input.x,clas_input.y))            
             digite=dicionario_de_arquivos['font_media'].render('Digite...', True, (255,255,255))
             window.blit(digite,(450-(digite.get_rect().width)/2,150))
             n_d=dicionario_de_arquivos['font_media'].render(num_digitado, True, (0,0,0))
